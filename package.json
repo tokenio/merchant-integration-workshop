@@ -1,0 +1,16 @@
+{
+  "name": "mki-workshop",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tokenio/mki-workshop.git"
+  },
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
