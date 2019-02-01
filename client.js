@@ -1,46 +1,25 @@
-function createPopupButton() {
-    const Token = new window.Token({
-        env: 'sandbox',
-    });
-    tokenController = Token.createPopupController();
+function createRedirectButton() {
+    // create TokenPopupController to handle Popup messages
+    tokenController = window.Token.createRedirectController();
 
-    const element = document.getElementById('token-button');
+    // get button placeholder element
+    var element = document.getElementById('token-button');
 
     // create the button
-    button = Token.createTokenButton(element, {
+    button = window.Token.createTokenButton(element, {
         label: "Token Quick Checkout",
     });
 
-    // setup onLoad callback
-    tokenController.onLoad(function(controller) {
-        // bind the Token Button to the Popup Controller when ready
-        tokenController.bindButtonClick(button, function(action) {
-            // Each time the button is clicked, a new tokenRequestUrl is created
-            getTokenRequestUrl(function(tokenRequestUrl) {
-                // Initialize popup using the tokenRequestUrl
-                action(tokenRequestUrl);
-            });
+    // bind the Token Button to the Redirect Controller when ready
+    tokenController.bindButtonClick(button, function(action) {
+        // Each time the button is clicked, a new tokenRequestUrl is created
+        getTokenRequestUrl(function(tokenRequestUrl) {
+            // Initialize popup using the tokenRequestUrl
+            action(tokenRequestUrl);
         });
-        // enable button after binding
-        button.enable();
     });
-
-    // setup onSuccess callback
-    tokenController.onSuccess(function(data) { // Success Callback
-        // build success URL
-        var successURL = "/redeem"
-            + "?tokenId=" + window.encodeURIComponent(data.tokenId)
-            + '&signature=' + window.encodeURIComponent(data.signature)
-            + '&state=' + window.encodeURIComponent(data.state);
-
-        // navigate to success URL
-        window.location.assign(successURL);
-    });
-
-    // setup onError callback
-    tokenController.onError(function(error) { // Failure Callback
-        throw error;
-    });
+    // enable button after binding
+    button.enable();
 }
 
 function getTokenRequestUrl(done) {
@@ -73,4 +52,4 @@ function getTokenRequestUrl(done) {
     XHR.send(data);
 }
 
-createPopupButton();
+createRedirectButton();
