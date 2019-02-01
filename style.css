@@ -75,3 +75,8 @@ label {
     opacity: 0.5;
     margin: 50px 0 10px 0;
 }
+
+#token-button {
+    margin-top: 20px;
+    width: 200px;
+}
