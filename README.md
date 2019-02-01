@@ -11,4 +11,4 @@ Clone the repo `git clone git@github.com:tokenio/merchant-integration-workshop.g
 
 Install dependencies `npm install`
 
-Then you can start the server with `node server.js` on `localhost:3000` 
+Then you can start the server with `nodemon server.js` on `localhost:3000` 
